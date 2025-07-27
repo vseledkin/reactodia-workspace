@@ -555,7 +555,7 @@ const WikidataSettingsOverride: Partial<SparqlDataProviderSettings> = {
         }
     `,
     filterRefElementLinkPattern: '?claim <http://wikiba.se/ontology#directClaim> ?link .',
-    filterTypePattern: '?inst wdt:P31 ?instType. ?instType wdt:P279* ?class',
+    filterTypePattern: '?inst wdt:P31 ?instType. ?instType wdt:P279* ?class .',
     filterAdditionalRestriction: `FILTER ISIRI(?inst)
                         BIND(STR(?inst) as ?strInst)
                         FILTER exists {?inst ?someprop ?someobj}
@@ -677,7 +677,7 @@ const OwlRdfsSettingsOverride: Partial<SparqlDataProviderSettings> = {
         }
     `,
     filterRefElementLinkPattern: '',
-    filterTypePattern: '?inst a ?instType. ?instType rdfs:subClassOf* ?class',
+    filterTypePattern: '?inst a ?instType. ?instType rdfs:subClassOf* ?class .',
     filterElementInfoPattern: `
         OPTIONAL {?inst rdf:type ?foundClass}
         BIND (coalesce(?foundClass, owl:Thing) as ?class)
@@ -759,7 +759,7 @@ const DBPediaOverride: Partial<SparqlDataProviderSettings> = {
         }
     `,
 
-    filterTypePattern: '?inst a ?instType. ?instType rdfs:subClassOf* ?class',
+    filterTypePattern: '?inst a ?instType. ?instType rdfs:subClassOf* ?class .',
     filterElementInfoPattern: `
         OPTIONAL {?inst rdf:type ?foundClass. FILTER (!contains(str(?foundClass), 'http://dbpedia.org/class/yago'))}
         BIND (coalesce(?foundClass, owl:Thing) as ?class)
